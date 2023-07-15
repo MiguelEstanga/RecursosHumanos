@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Session;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
@@ -21,10 +23,10 @@ class SessionController extends Controller
         if( Auth::attempt($credenciales) ){
             $request->session()->regenerate();
 
-            return redirect('/inicio');
+            return redirect()->route('desboart');
         }
         
-         return redirect()->route('login')->with('login' , 'los datos ingresado son incorrectos') ;
+        return redirect()->route('login')->with('login' , 'los datos ingresado son incorrectos') ;
     }
 
 

@@ -31,7 +31,7 @@ class SessionController extends Controller
             'password' => bcrypt( $request->password ),
             'email' => $request->email,
             'cedula'=> $request->cedula
-        ])->assignRole('Usuario');
+        ])->assignRole(1);
 
         return redirect('/')->with('mensage' , 'su registro fue exitoso '.$request->email  ) ;
     }

@@ -25,11 +25,14 @@ class DatabaseSeeder extends Seeder
             ['estado' => 'Enviada'],
             ['estado' => 'De_Vuelta'],
             ['estado' => 'Verificado'],
-            ['estado' => 'Aprobado']
+            ['estado' => 'Aprobado'],
+            ['estado' => 'Denegada']
         ];
 
         $tsolisitud = [
-            ['Tipo_Solisitud' => 'Nacimiento_De_Hijo']
+           
+            ['Tipo_Solisitud' => 'Nacimiento De Hijo'],
+            ['Tipo_Solisitud' => 'Acta De Defuncion']
         ];
 
         User::create([

@@ -17,6 +17,7 @@ class CargaFamiliar extends Model
                     'Nivel_Estudio' ,
                     'Fecha_De_Defuncion' ,
                     'edad' ,
-                    'id_planilla'
+                    'id_planilla',
+                    'Nombre_Apellido'
     ];
 }

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Solisitud;
+namespace App\Http\Controllers\Anuncio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\TipoDesolisitudes;
-
-class TipoDeSolisitudController extends Controller
+use App\Models\Anuncion;
+class AnuncioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,8 @@ class TipoDeSolisitudController extends Controller
      */
     public function index()
     {
-        return view('solisitudes.index' , 
-            [ 
-                'solisitudes' => TipoDesolisitudes::all() 
-            ]
-        );   
+                return view('registrados.index' , ['anuncion' => Anuncion::all()]);
+
     }
 
     /**
@@ -29,7 +25,7 @@ class TipoDeSolisitudController extends Controller
      */
     public function create()
     {
-        return view('solisitudes.create');
+        //
     }
 
     /**
@@ -39,14 +35,8 @@ class TipoDeSolisitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-       
-        
-        TipoDesolisitudes::create([
-            'Tipo_Solisitud' => $request->Tipo_Solisitud
-        ]);
-
-        return redirect()->route('solisitudes.index')->with('mensage' , 'Se Ha Creado Una Nueva Solicitud Exitosamente');
+    {
+        //
     }
 
     /**

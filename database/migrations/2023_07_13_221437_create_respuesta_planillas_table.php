@@ -13,21 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carga_familiars', function (Blueprint $table) {
+        Schema::create('respuesta_planillas', function (Blueprint $table) {
             $table->id();
-            $table->string("Nombre_Apellido");
-            $table->string('Fecha_Nacimiento');
-            $table->string('Cedula');
-            $table->string('Nivel_Estudio');
-            $table->string('Fecha_De_Defuncion');
-            $table->string('edad');
 
+            $table->string('comentario');
             $table->foreignId('id_planilla')
             ->nullable()
             ->constrained('planilla_beneficiarios')
             ->cascadeOnUpdate()
             ->nullOnDelete(); 
-
             $table->timestamps();
         });
     }
@@ -39,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carga_familiars');
+        Schema::dropIfExists('respuesta_planillas');
     }
 };

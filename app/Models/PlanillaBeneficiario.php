@@ -18,6 +18,7 @@ class PlanillaBeneficiario extends Model
         'Cedula',
         'Apellido_Completo' ,
         'Dependencia_Nominal',
+       
         'id_estado',
         'id_usuario',
         'id_tsolisitud'
@@ -27,22 +28,26 @@ class PlanillaBeneficiario extends Model
 
     public function TipoDeSolisitud()
     {
-        return $this->belongsTo(TipoDesolisitud::class , 'id_planilla');
+        return $this->belongsTo(TipoDesolisitudes::class , 'id_tsolisitud');
     }
 
     public function estado ()
     {
-        return $this->belongsTo(Estado::class , 'id');
+        return $this->belongsTo(Estado::class , 'id_estado');
     }
 
-     public function users ()
+     public function user ()
     {
-        return $this->belongsTo(Users::class , 'id');
+        return $this->belongsTo(User::class , 'id_usuario');
     }
 
     public function carga(){
         return $this->hasMany(CargaFamiliar::class , 'id_planilla');
     }
 
+    public function mensage()
+    {
+        return $this->belongsTo(  RespuestaPlanilla::class , 'id_planilla');
+    }
   
 }
