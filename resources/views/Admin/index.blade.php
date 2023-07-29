@@ -11,6 +11,10 @@
 			      <th scope="col">Email</th>
 			      <th scope="col">Cedula</th>
 			      <th scope="col" >Cargo</th>
+
+			      <th scope="col" > Editar Rol </th>
+			   
+			      <th scope="col" >Eliminar planillas</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -22,6 +26,7 @@
 						      <td>{{ $usuario->email }}</td>
 						      <td>{{ $usuario->cedula }}</td>
 						      <td>{{ $usuario->getRoleNames()[0] }}</td>
+						     
 						      <td>
 						      	<a 
 						      		class="btn btn-success"
@@ -31,6 +36,19 @@
 						      		Editar usuario
 						      	</a>
 						      </td>
+						      
+					
+						 	<td>
+						 		<form action="{{ route('usurio.delete_planillas' , $usuario->id) }}" method="post" >
+						 			@csrf
+						 			@method('delete')
+						 			<button class="btn btn-danger" >
+						 				Eliminar planillas {{ count($usuario->planillas) }}
+						 			</button>
+						 		</form>
+						 	</td>		
+			
+						      
 					    </tr>
 			  		@endif
 			 

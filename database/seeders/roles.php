@@ -20,7 +20,7 @@ class roles extends Seeder
       $Role2 =  Role::create(["name" => "Usuario"]);
       $Role3 =  Role::create(["name" => "SuperAdministrador"]);
       $Role4 =  Role::create(["name" => "Gerente"]);
-      $Role5 =  Role::create(["name" => "Analista"]);
+      $Role5 =  Role::create(["name" => "Desabilitado"]);
 
       //trabajador  y usuario -> permiso crear planilla 
       //superadmin 
@@ -28,10 +28,15 @@ class roles extends Seeder
       // usuario genera solocitudes 
       //gerente puede crear tipos de solitudes 
       //mensage director cordinador 
-      //
+      //organizar
+
+      //por nacimiento
+      //por defuncion
+      //defuncion de trabjadores o carga familiar 
+      //juguetes // no incliye nivel de estudio
+      
 
       Permission::create(['name' => 'superadmin' ])->assignRole($Role3);
-
       Permission::create(['name' => 'admin'])->syncRoles([$Role1 ,  $Role3]);
       Permission::create(['name' => 'public'])->syncRoles([$Role1 , $Role2 , $Role3]);
 

@@ -39,11 +39,10 @@ class DatabaseSeeder extends Seeder
             'name' => "Miguel",
             "email" => 'recursoshumanos@gmail.com',
             'password'=> bcrypt('123456789') ,
-            'apellido' => "Barcamonte",
+            'apellido' => "Bracamonte",
             'cedula'=> 24864260
         ])->assignRole('SuperAdministrador');
-        \App\Models\User::factory(0)->create();
-
+        
 
 
        

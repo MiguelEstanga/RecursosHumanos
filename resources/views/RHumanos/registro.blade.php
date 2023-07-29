@@ -41,7 +41,7 @@
                 <div class="col-md-12">
                     <label for="validationCustom02" class="form-label">Cedula de identidad</label>
                     <input type="text" class="form-control" id="validationCustom02" name="cedula" required>
-                    @error('Cedula')
+                    @error('cedula')
                         <p class="alert alert-danger"> {{ $message }} </p>
                     @enderror
                     <div class="valid-feedback">
@@ -81,14 +81,14 @@
                         <p class="alert alert-danger"> {{ $message }} </p>
                     @enderror
                     <div class="invalid-feedback">
-                        emiail
+                        email
                     </div>
                 </div>
 
                 <div class="col-12 accion">
                     <div> <a href="{{ route('login') }}"> login </a> </div>
                     <div>
-                        <button class="" type="submit">Submit form</button>
+                        <button class="btn btn-primary" type="submit">registrar</button>
                     </div>
 
                 </div>
@@ -101,6 +101,9 @@
     </script>
 </body>
 <style>
+    body{
+        background-color: #212529;
+    }
     .accion {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -121,19 +124,18 @@
         font-weight: 100;
         font-family: sans-serif;
         cursor: pointer;
-        background: #5DADE2;
-        color: #fff;
-    }
+       
+         }
 
     .logo {
         position: absolute;
         border-radius: 50%;
         box-shadow: 0 0 5px black;
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
         margin: auto;
-        top: -150px;
-        left: -150px;
+        top: -120px;
+        left: -120px;
         z-index: 2;
         background: black;
         display: flex;
@@ -147,8 +149,8 @@
         border-radius: 50%;
     }
     .formularioRegistro {
-        background-image: linear-gradient(90deg, #F4D03F, #5DADE2, #E74C3C);
-        border: solid 1px black;
+        
+       
         width: 100vw;
         height: 100vh;
         display: flex;
@@ -160,10 +162,12 @@
         padding: 20px;
         border-radius: 5px;
         width: 500px;
-        background: rgba(255, 255, 255, .5);
+        color: #fff;
+        background: #212529;
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
-        border: 1.5px solid rgba(209, 213, 219, 0.3);
+              box-shadow: -2px 4px 15px 4px rgba(0,0,0,0.91);
+
     }
 </style>
 

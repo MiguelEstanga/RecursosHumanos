@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +11,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\Options;
 use App\Models\Estado;
 use App\Models\Anuncion;
-        use App\Models\PlanillaBeneficiario;
+use App\Models\PlanillaBeneficiario;
+use App\Models\TipoDesolisitudes;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -27,6 +30,8 @@ class AdminController extends Controller
         return view('Admin.update' , ['usuario' => $usuario , 'Role' => $roles]);
     }
 
+
+
     public function put(Request $request , $id)
     {
         $usuario = User::find($id);
@@ -39,9 +44,43 @@ class AdminController extends Controller
         $usuario->removeRole( $usuario->getRoleNames()[0] );
         $usuario->assignRole($request->role);
         $usuario->save;
-        return $usuario->role;
+               return redirect()->route('Usuario.index');
+
     }
 
+    public function eliminarUsuario($id)
+    {
+        $usuario =  User::find($id);
+        
+        if($usuario->planillas ?? false )
+        {
+                foreach($usuario->planillas as $planillas)
+                {
+                   $planillas->delete();     
+                }  
+        }
+        
+       
+
+        $usuario->delete();
+        return redirect()->route('Usuario.index');
+    }
+
+    public function eliminar_planillas_usuarios($id)
+    {
+        $usuario =  User::find($id);
+        
+        if( count( $usuario->planillas)>0 )
+        {
+                foreach($usuario->planillas as $planillas)
+                {
+                   $planillas->delete();     
+                }  
+        }
+
+        return redirect()->route('Usuario.index');
+
+    }
 
     public function planillas()
     {
@@ -58,6 +97,8 @@ class AdminController extends Controller
             'isHtml5ParserEnabled' =>  true
         ];
         $planilla =  PlanillaBeneficiario::find($id);
+        //return $planilla;    
+
         $pdf = Pdf::loadView(
             'Admin.show',
             ['registro' => $planilla]
@@ -93,5 +134,52 @@ class AdminController extends Controller
     public function mensage()
     {
         return view('registrados.index' , ['anuncion' => Anuncion::all()]);
+    }
+
+    public function reporte()
+    {
+        $solisitudes = TipoDesolisitudes::all();
+        
+
+
+        return view('Admin.reporte' , 
+            [
+                'solisitudes'  => $solisitudes,
+               
+            ] 
+        );
+    }
+//esto es para el reporte
+      public function reporte_id(Request $request)
+    {
+        
+       
+        $solicitud = PlanillaBeneficiario::where('id_tsolisitud', $request->filtro)
+                ->whereMonth('created_at',now()->month($request->mes) )
+                ->get();
+       
+        
+       $chart_options = [
+            'chart_title' => 'Reporte De Los Ultimos '.$request->dias.' Dias ',
+            'chart_type' => $request->barra,
+            'report_type' => 'group_by_relationship',
+            'model' => 'App\Models\PlanillaBeneficiario',
+
+            'relationship_name' => 'TipoDeSolisitud', // represents function user() on Transaction model
+            'group_by_field' => 'Tipo_Solisitud', // users.name
+
+           
+            
+            'filter_field' => 'created_at',
+            'filter_days' => $request->dias, // show only transactions for last 30 days
+            'filter_period' => 'week', // show only transactions for this week
+        ];
+        $chart1 = new LaravelChart($chart_options);
+         
+
+        $planillas = PlanillaBeneficiario::whereBetween('created_at', [$request->Desde, $request->Hasta])
+            ->get();
+
+        return view('Admin.grafico' ,['chart1' => $chart1  ]);
     }
 }

@@ -197,21 +197,41 @@
                 <tr>
                     <th>Nombre Y Apellido</th>
                     <th>Fecha de Nacimiento</th>
+                    @if($registro->id_tsolisitud == 2)
+                        <th>
+                            Fecha De Defuncion
+                        </th>
+                    @endif
+                        
                     <th>Cedula Identidad</th>
                     <th>Grado de estudio</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($registro->carga as $carga)
                     <td>
+                        {{ $carga->Nombre_Apellido }}
+                    </td>
+                    @if($registro->id_tsolisitud == 2 )
+                        <td>
+                            {{ $carga->Fecha_De_Defuncion }}
+                        </td>    
+                    @endif
+                    <td>
+                           
                         {{$carga->Fecha_Nacimiento}}
+                        
                     </td>
                     <td>
                        {{ $carga->Cedula}}
                     </td>
+                    <td>
+                        {{ $carga->Nivel_Estudio }}
+                    </td>
                 @endforeach
             </tbody>
-          
+          {{ $registro->carga }}
         </table>
 
         <div class="firma" style="position:absolute; right:0;">
@@ -225,3 +245,10 @@
 </body>
 
 </html>
+
+<style>
+    .d{
+        height: ;
+        width: ;
+    }
+</style>

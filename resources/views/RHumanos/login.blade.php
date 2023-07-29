@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
     <title>login</title>
 </head>
 
@@ -56,7 +59,7 @@
                             <a href="{{ route('home') }}" class="lick">registrarce</a>
                         </div>
                         <div class="col-sm-6   control">
-                            <button type="submit" class="btn btn-primary"> iniciar session </button>
+                            <button type="submit" class="btn btn-primary" > iniciar session </button>
                         </div>
                     </div>
                     @if (session('mensage'))
@@ -89,9 +92,14 @@
         margin: 0;
     }
 
+    body{
+       
+      
+        background:#212529;
+    }
+
     .contenedor-login {
 
-        background-image: linear-gradient(90deg, #F4D03F, #5DADE2, #E74C3C);
         width: 100vw;
         height: 100vh;
         display: flex;
@@ -101,7 +109,7 @@
     }
 
     .formulario {
-
+      
         width: 500px;
         height: 600px;
 
@@ -113,11 +121,11 @@
         position: absolute;
         border-radius: 50%;
         box-shadow: 0 0 10px black;
-        width: 250px;
-        height: 250px;
+        width: 150px;
+        height: 150px;
         margin: auto;
-        top: -100px;
-        left: -100px;
+        top: -50px;
+        left: -50px;
         z-index: 2;
         background: black;
         display: flex;
@@ -140,11 +148,7 @@
         grid-template-rows: repeat(4, 1fr);
         gap: 2px;
         border-radius: 5px;
-        background: rgba(255, 255, 255, .5);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        border: 1.5px solid rgba(209, 213, 219, 0.3);
-
+        box-shadow: -2px 4px 15px 4px rgba(0,0,0,0.91);
     }
 
     .contenedorsession form div {
@@ -210,8 +214,7 @@
         font-weight: 100;
         font-family: sans-serif;
         cursor: pointer;
-        background: #5DADE2;
-        color: #fff;
+       
     }
 
     .acciones a {

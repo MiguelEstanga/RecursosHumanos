@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Anuncio;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Anuncion;
+
 class AnuncioController extends Controller
 {
     /**
@@ -12,6 +13,12 @@ class AnuncioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public  function __construct()
+    {
+        // code...
+    }
+
     public function index()
     {
                 return view('registrados.index' , ['anuncion' => Anuncion::all()]);
@@ -25,7 +32,7 @@ class AnuncioController extends Controller
      */
     public function create()
     {
-        //
+        return view('registrados.Create');
     }
 
     /**
@@ -36,7 +43,14 @@ class AnuncioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Anuncion::create(
+          [
+            'anuncion' =>$request->anuncion,
+            'titulo' => $request->titulo
+          ]
+       );
+
+        return redirect()->route('anuncion.index')->with('mensage' , 'Mensage Exitosamente Publicado');
     }
 
     /**
@@ -47,7 +61,7 @@ class AnuncioController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -81,6 +95,8 @@ class AnuncioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Anuncion::find($id)->delete();
+        return redirect()->route('anuncion.index')->with('mensage' , 'Peticion Exitosa') ;
+        //ssh -p 65002 u702812556@149.100.151.91
     }
 }

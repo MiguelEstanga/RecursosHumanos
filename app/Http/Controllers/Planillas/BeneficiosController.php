@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Planillas;
 use App\Http\Controllers\Controller;
 use App\Models\PlanillaBeneficiario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Arr; 
 use Dompdf\Options;
 use Barryvdh\DomPDF\Facade\Pdf;
 

@@ -49,8 +49,8 @@
 			 		<button class="btn btn-success">
 			 			Actulizar
 			 		</button>
-			 	</td>	
-			
+			 	</td>
+			 
   			</tbody>
 		</table>
 	</div>	

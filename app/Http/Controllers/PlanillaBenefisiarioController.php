@@ -1,8 +1,10 @@
-    <?php
-
+<?php
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+
 use App\Models\PlanillaBeneficiario;
 use App\Models\TipoDesolicirures;
 use App\Models\CargaFamiliar;
@@ -30,7 +32,19 @@ class PlanillaBenefisiarioController extends Controller
 
     public function store(Request $request)
     {
-       // return $request->solisitud;
+       
+        $request->validate(
+            [
+                'Nombre_Completo' => 'required',
+                'Apellido_Completo' => 'required',
+                'Cedula_beneficiario' => 'required',
+                'Codigo' => 'required',
+                'Cargo' => 'required',
+                'Direccion' => 'required',
+            ]
+
+        );
+
        $familiares = [];
        
        for($i = 0 ; $i< count($request->Fecha_Nacimiento) ;  $i++){
@@ -46,11 +60,10 @@ class PlanillaBenefisiarioController extends Controller
        } 
       
        
-       $registro = PlanillaBeneficiario::create(
-        [
+       $registro = PlanillaBeneficiario::create([
             'Nombre_Completo' => $request->Nombre_Completo,
             'Apellido_Completo' => $request->Apellido_Completo,
-            'Cedula' => 26101877,
+            'Cedula' => $request->Cedula_beneficiario,
             'Codigo' => $request->Codigo,
             'Cargo' => $request->Cargo,
             'Direccion' => $request->Direccion,

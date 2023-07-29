@@ -3,11 +3,9 @@
 
 @section('contenido')
     <div class="container-sm">
-      
+
         <section class="container boseria ">
-            @if (session('mensage'))
-                <h2 class="alert alert-success">{{ session('mensage') }}</h2>
-            @endif
+         
             @foreach ($anuncion as $anuncion)
                 <div class="card  text-bg-dark  w-75 mb-3  text-white">
                     <div class="card-header">

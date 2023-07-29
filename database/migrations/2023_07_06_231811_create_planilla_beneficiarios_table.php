@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('Codigo');
             $table->string('Cargo');
             $table->string('Direccion');
+            $table->string('fecha')->default( date('Y-m-d') );
             $table->string('mensage')->default('Esperando respuesta del Administrador');
             $table->string('Dependencia_Nominal');
             

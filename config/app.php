@@ -195,6 +195,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPdf\ServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
     ],
 
     /*

@@ -24,6 +24,9 @@
 <body>
     @livewireStyles
     <x-menu/>
+    @if(session("mensage"))
+        <x-alerta :mensage="session('mensage') " />
+    @endif
     <section>
         @yield('contenido')
     </section>
@@ -39,7 +42,7 @@
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous">
     </script>
         @livewireScripts
-
+        @yield('script')
 </body>
 
 </html>

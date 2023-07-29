@@ -40,7 +40,7 @@ class SessionController extends Controller
                 'name'=> 'required|max:255',
                 'email' => 'required|email|unique:users,email|max:255',
                 'cedula' => 'required|integer|unique:users,cedula',
-                'name' => 'required|max:255',
+                
                 'apellido' => 'required|max:255',
                 'password'=> 'required',
                 'password_confirm' => 'required|same:password'           
@@ -56,6 +56,18 @@ class SessionController extends Controller
         ])->assignRole('Usuario');
 
         return redirect('/')->with('mensage' , 'su registro fue exitoso '.$request->email  ) ;
+    }
+
+
+    public function cerrar_sesion(Request $request)
+    {
+          Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
 }

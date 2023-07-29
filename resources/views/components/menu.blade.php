@@ -1,27 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a
+      id="desboart" 
+      class="navbar-brand"  ">
       {{ Auth::user()->roles[0]->name }}
     </a>
   
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
+         <li class="nav-item">
+                    <a href="{{ route('anuncion.index') }}" class="nav-link">
+                Inicio
+              </a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  id="link_boton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            planillas
+            Planillas
           </a>
           <ul  class="submenu" id="submenu" aria-labelledby="">
-            <li><a  href="{{ route('planillabeneficiario.create') }}">crear una planilla</a></li>
+            <li><a  href="{{ route('planillabeneficiario.create') }}">Crear Una Planilla</a></li>
          
-            <li><a  href="#">Something else here</a></li>
+            
           </ul>
         </li>
         
           @can("admin")
             <li class="nav-item">
-                    <div href="{{ route('Usuario.index') }}" class="nav-link">
-                usuarios
-              </div>
+              <a href="{{ route('Usuario.index') }}" class="nav-link">
+                Usuarios
+              </a>
+            </li>
+             <li class="nav-item">
+              <a href="{{ route('reporte') }}" class="nav-link">
+                Reporte
+              </a>
             </li>
           @endcan
         
@@ -30,7 +42,14 @@
   
   </div>
   <div class="avatar" id="avatar">
-      avatar
+      @can('admin')
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 512 512"><path fill="white" d="M213.3 384c0-87 65.2-158.7 149.3-169.2v-1.5c5.5-8 21.3-21.3 21.3-42.7s-21.3-42.7-21.3-53.3C362.7 32 319.2 0 256 0c-60.5 0-106.7 32-106.7 117.3c0 10.7-21.3 32-21.3 53.3s15.2 35.4 21.3 42.7c0 0 0 21.3 10.7 53.3c0 10.7 21.3 21.3 32 32c0 10.7 0 21.3-10.7 42.7L64 362.7C21.3 373.3 0 448 0 512h271.4c-35.5-31.3-58.1-77-58.1-128zM384 256c-70.7 0-128 57.3-128 128s57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128zm85.3 149.3h-64v64h-42.7v-64h-64v-42.7h64v-64h42.7v64h64v42.7z"/></svg>
+
+      @endcan
+      @can('public')
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 256 256"><path fill="white" d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8ZM72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"/></svg>
+
+      @endcan
   </div>
   <div class="avatarmenu" id="avatarmenu">
     <div class="close" id="close_menu">
@@ -68,8 +87,26 @@
               solisitudes
             </a>
           </div>
+           <div class="p-2 item">
+            <a class="fs-4 text-dark" href="{{ route('anuncion.create') }}">
+              Crear Un Anuncio
+            </a>
+          </div>
         @endcan
-
+          <div class="p-2 item">
+            <form action="{{ route('cerrar_sesion') }}" method="post" >
+              @csrf
+                <button
+                style="
+                  border: none;
+                  background-color: transparent;
+                "
+                 class="fs-4 text-dark" >
+                   Cerrar Sesion
+              </button>
+            </form>
+          
+          </div>
     </div>
   </div>
 </nav>
@@ -107,7 +144,6 @@
   }
 
   .avatar{
-    border: solid 1px #fff;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -173,6 +209,10 @@
    })
 
    avatar.addEventListener('click' , e=>{
+      avatarmenu.classList.toggle('active')
+   })
+
+   desboart.addEventListener('click' , e=>{
       avatarmenu.classList.toggle('active')
    })
 
