@@ -21,5 +21,9 @@
 		.card{
 			width: 100%;
 		}
+
+		.uncambio{
+			
+		}
 	</style>
 @endsection
