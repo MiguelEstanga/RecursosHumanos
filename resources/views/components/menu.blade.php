@@ -18,7 +18,7 @@
             Planillas
           </a>
           <ul  class="submenu" id="submenu" aria-labelledby="">
-            <li><a  href="{{ route('planillabeneficiario.create') }}">Crear Una Planilla</a></li>
+            <li><a  href="{{ route('planillabeneficiario.create') }}">Crear una Planilla</a></li>
          
             
           </ul>
@@ -57,11 +57,11 @@
     </div>
     <div class=" bg-dark datos_session">
         <h4>
-          Recursos Humanos Contradulia De Monagas
+          Recursos Humanos Contraloría De Monagas
         </h4>
         <p>
           Correo: {{ Auth::user()->email }} <br>
-          Cedula: {{ Auth::user()->cedula }}
+          Cédula: {{ Auth::user()->cedula }}
         </p>
        
         
@@ -73,18 +73,18 @@
         </div>
         <div class="p-2 item" >
            <a class="fs-4 text-dark" href="{{ route('planillabeneficiario.create') }}">
-              Crear Una Nueva
+              Crear Planilla
            </a>
         </div>
         @can('admin')
           <div class="p-2 item">
             <a class="fs-4 text-dark" href="{{ route('planillas.all') }}">
-              Todas las planillas
+              Todas las Planillas
             </a>
           </div>
            <div class="p-2 item">
             <a class="fs-4 text-dark" href="{{ route('solisitudes.index') }}">
-              solisitudes
+              Solicitudes
             </a>
           </div>
            <div class="p-2 item">

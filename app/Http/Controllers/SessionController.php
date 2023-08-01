@@ -33,7 +33,7 @@ class SessionController extends Controller
             'cedula'=> $request->cedula
         ])->assignRole(1);
 
-        return redirect('/')->with('mensage' , 'su registro fue exitoso '.$request->email  ) ;
+        return redirect('/')->with('mensage' , 'Su registro fue exitoso '.$request->email  ) ;
     }
     //editar usuario
   
@@ -55,8 +55,8 @@ class SessionController extends Controller
 
             return redirect('/inicio');
         }
-        
-         return redirect()->route('login')->with('login' , 'los datos ingresado son incorrectos') ;
+         
+         return redirect()->route('login')->with('login' , 'Los datos ingresados son incorrectos') ;
     }
 
     public function logout(Request $request){

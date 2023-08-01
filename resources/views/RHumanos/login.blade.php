@@ -27,7 +27,7 @@
                     @csrf
                     <div>
                         <h2>
-                            inicio de session
+                            Inicio de Sesión
                         </h2>
 
                     </div>
@@ -50,24 +50,27 @@
                             </label> <input type="password" class="input" name="password" id="password">
                         </div>
                         @error('password')
-                            <p style="color: red"> la contraceña es requerida </p>
+                            <p style="color: red"> La contraseña es requerida </p>
                         @enderror
                     </div>
                     <div class="acciones">
 
                         <div class="col-sm-6 control" style="margin: auto">
-                            <a href="{{ route('home') }}" class="lick">registrarce</a>
+                            <a href="{{ route('home') }}" class="lick btn btn-primary">Registrarse</a>
                         </div>
                         <div class="col-sm-6   control">
-                            <button type="submit" class="btn btn-primary" > iniciar session </button>
+                            <button type="submit" class="btn btn-primary" > Iniciar Sesión </button>
                         </div>
                     </div>
                     @if (session('mensage'))
                         <p style="color: #5de28c">{{ session('mensage') }}</p>
                     @endif
                     @if (session('login'))
-                        <p style="color: red">
-                            {{ session('login') }}
+                        <p style="
+                            text-align: center;
+                            color: red
+                            ">
+                            Los datos ingresados son incorrectos
                         </p>
                     @endif
             </div>
@@ -94,8 +97,8 @@
 
     body{
        
-      
-        background:#212529;
+        background-image: linear-gradient( 60deg , #212529  , #5DADE2 , #28B463 80%)  ;
+       
     }
 
     .contenedor-login {
@@ -112,7 +115,6 @@
       
         width: 500px;
         height: 600px;
-
         display: grid;
         position: relative;
     }
@@ -148,6 +150,12 @@
         grid-template-rows: repeat(4, 1fr);
         gap: 2px;
         border-radius: 5px;
+        *box-shadow: -2px 4px 15px 4px rgba(0,0,0,0.91);
+        transition: linear all 500ms;
+
+    }
+
+    .contenedorsession form:hover{
         box-shadow: -2px 4px 15px 4px rgba(0,0,0,0.91);
     }
 
