@@ -33,7 +33,7 @@ class SessionController extends Controller
             'cedula'=> $request->cedula
         ])->assignRole(1);
 
-        return redirect('/')->with('mensage' , 'Su registro fue exitoso '.$request->email  ) ;
+        return redirect('/')->with('mensage' , 'Su registro fue exitoso'.$request->email  ) ;
     }
     //editar usuario
   

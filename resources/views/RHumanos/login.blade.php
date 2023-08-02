@@ -63,8 +63,15 @@
                         </div>
                     </div>
                     @if (session('mensage'))
-                        <p style="color: #5de28c">{{ session('mensage') }}</p>
+                    <span style="
+                            font-weight:900;
+                            text-align:center;
+                            color: black;
+                            ">
+                            {{ session('mensage') }}</span>
+                      
                     @endif
+                 
                     @if (session('login'))
                         <p style="
                             text-align: center;

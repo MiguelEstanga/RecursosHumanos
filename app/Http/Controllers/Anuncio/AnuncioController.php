@@ -20,8 +20,9 @@ class AnuncioController extends Controller
     }
 
     public function index()
-    {
-                return view('registrados.index' , ['anuncion' => Anuncion::all()]);
+    {   
+        $anuncio = Anuncion::orderBy('created_at' , 'desc' )->get();
+                return view('registrados.index' , ['anuncion' =>  $anuncio ]);
 
     }
 
@@ -43,6 +44,7 @@ class AnuncioController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Caracas');
         Anuncion::create(
           [
             'anuncion' =>$request->anuncion,
@@ -96,7 +98,7 @@ class AnuncioController extends Controller
     public function destroy($id)
     {
         Anuncion::find($id)->delete();
-        return redirect()->route('anuncion.index')->with('mensage' , 'Peticion Exitosa') ;
+        return redirect()->route('anuncion.index')->with('mensage' , 'Anuncio eliminado exitosamente.') ;
         //ssh -p 65002 u702812556@149.100.151.91
     }
 }

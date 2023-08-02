@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>registrar</title>
+    <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
@@ -19,7 +19,7 @@
             <form class="row g-3 needs-validation" method="post" action="{{ route('registroUsuario') }}">
                 @csrf
                 <div class="col-md-6">
-                    <label for="validationCustom01" class="form-label">Nombre Completo</label>
+                    <label for="validationCustom01" class="form-label">Nombres</label>
                     <input type="text" class="form-control" id="validationCustom01" name="name" required>
                     @error('name')
                         <p class="alert alert-danger"> {{ $message }} </p>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="validationCustom01" class="form-label">Apelldo Completo</label>
+                    <label for="validationCustom01" class="form-label">Apellidos</label>
                     <input type="text" class="form-control" id="validationCustom01" name="apellido" required>
                     @error('apellido')
                         <p class="alert alert-danger"> {{ $message }} </p>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <label for="validationCustom02" class="form-label">Cedula de identidad</label>
+                    <label for="validationCustom02" class="form-label">Cédula de Identidad</label>
                     <input type="text" class="form-control" id="validationCustom02" name="cedula" required>
                     @error('cedula')
                         <p class="alert alert-danger"> {{ $message }} </p>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="validationCustomUsername" class="form-label">contraceña</label>
+                    <label for="validationCustomUsername" class="form-label">Contraseña</label>
                     <div class="input-group has-validation">
 
                         <input type="password" name="password" class="form-control" name="password"
@@ -63,32 +63,32 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">repetir contraceña</label>
+                    <label for="validationCustom03" class="form-label">Repetir Contraseña</label>
                     <input type="password" name="password_confirm" class="form-control" id="validationCustom03"
                         required>
                     @error('password')
                         <p class="alert alert-danger"> {{ $message }} </p>
                     @enderror
                     <div class="invalid-feedback">
-                        repetir contraceña
+                        Repetir Contraseña
                     </div>
                 </div>
 
                 <div class="col-md-12">
-                    <label for="validationCustom05" class="form-label">email</label>
+                    <label for="validationCustom05" class="form-label">Email</label>
                     <input type="email" name="email" required class="form-control" id="validationCustom05" required>
                     @error('email')
                         <p class="alert alert-danger"> {{ $message }} </p>
                     @enderror
                     <div class="invalid-feedback">
-                        email
+                        Email
                     </div>
                 </div>
 
                 <div class="col-12 accion">
-                    <div> <a href="{{ route('login') }}"> login </a> </div>
+                    <div> <a href="{{ route('login') }}" class="btn btn-primary" > Volver al Inicio de Sesión </a> </div>
                     <div>
-                        <button class="btn btn-primary" type="submit">registrar</button>
+                        <button class="btn btn-primary" type="submit">Registrar</button>
                     </div>
 
                 </div>
@@ -102,7 +102,8 @@
 </body>
 <style>
     body{
-        background-color: #212529;
+        background-image: linear-gradient( 60deg , #212529  , #5DADE2 , #28B463 80%)  ;
+
     }
     .accion {
         display: grid;
@@ -163,9 +164,16 @@
         border-radius: 5px;
         width: 500px;
         color: #fff;
-        background: #212529;
+      
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
+        transition:all 500ms linear;
+              *box-shadow: -2px 4px 15px 4px rgba(0,0,0,0.91);
+
+    }
+
+    .conten-data:hover {
+        
               box-shadow: -2px 4px 15px 4px rgba(0,0,0,0.91);
 
     }

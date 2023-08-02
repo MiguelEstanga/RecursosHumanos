@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $estados = [
             ['estado' => 'Enviada'],
-            ['estado' => 'De_Vuelta'],
+            ['estado' => 'De Vuelta'],
             ['estado' => 'Verificado'],
             ['estado' => 'Aprobado'],
             ['estado' => 'Denegada']

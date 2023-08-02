@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -84,7 +85,9 @@ class AdminController extends Controller
 
     public function planillas()
     {
-        $planillas = PlanillaBeneficiario::all();
+        $planillas = PlanillaBeneficiario::where('id_usuario' , '!=' , Auth::user()->id )
+        ->orderBy('created_at' , 'desc')                                                    
+        ->get();
 
         return view("Admin.todaslasplanillas" , ['planillas' => $planillas ]);
     }
@@ -119,6 +122,14 @@ class AdminController extends Controller
 
     public function procesarRespuesta(Request $request , $id)
     {
+        if($request->estado == 'null'){
+            return redirect()->route('planilla.respuesta' , $id)->with('opcion'  , '¡Selecciona la respuesta a la planilla!' );
+        }
+         
+        $request->validate([
+            'mensage' => 'required'
+        ]);
+
         $planilla = PlanillaBeneficiario::find($id);
 
         //return $planilla->estado;
@@ -127,13 +138,13 @@ class AdminController extends Controller
         $planilla->save();
 
 
-        return redirect()->route('planillas.all')->with('mensage' , 'mensage enviado exitosamente');
+        return redirect()->route('planillas.all')->with('mensage' , 'Respuesta tramitada exitosamente.');
     }
 
 
     public function mensage()
     {
-        return view('registrados.index' , ['anuncion' => Anuncion::all()]);
+        return view('registrados.index' , ['anuncion' => Anuncion::all()   ]);
     }
 
     public function reporte()
@@ -172,7 +183,7 @@ class AdminController extends Controller
             
             'filter_field' => 'created_at',
             'filter_days' => $request->dias, // show only transactions for last 30 days
-            'filter_period' => 'week', // show only transactions for this week
+           // 'filter_period' => 'week', // show only transactions for this week
         ];
         $chart1 = new LaravelChart($chart_options);
          

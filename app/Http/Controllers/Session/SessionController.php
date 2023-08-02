@@ -23,7 +23,7 @@ class SessionController extends Controller
         if( Auth::attempt($credenciales) ){
             $request->session()->regenerate();
 
-            return redirect()->route('desboart');
+            return redirect()->route('anuncion.index');
         }
         
         return redirect()->route('login')->with('login' , 'los datos ingresado son incorrectos') ;

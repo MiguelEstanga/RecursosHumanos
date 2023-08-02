@@ -7,13 +7,13 @@
         <section class="container boseria ">
          
             @foreach ($anuncion as $anuncion)
-                <div class="card  text-bg-dark  w-75 mb-3  text-white">
-                    <div class="card-header">
+                <div class="card  text-bg-dark  w-75 mb-3  text-white"  style=" border:solid 3px #6C3483; " >
+                    <div class="card-header" style=" border-bottom:solid 3px #6C3483; " >
                           <h5 class="card-title">
-                            fecha : {{ $anuncion->created_at }}
+                            Fecha : {{ $anuncion->created_at }}
                         </h5>
                         <h5 class="card-title">
-                            titulo : {{ $anuncion->titulo }}
+                            Título : {{ $anuncion->titulo }}
 
                         </h5>
                     </div>
@@ -24,12 +24,12 @@
                     </div>
                     @can('superadmin')
                         <div>
-                            <a class="btn btn-outline-success" href="{{ route('anuncion.edit', $anuncion->id) }}"> editar </a>
+                            <a class="btn btn-outline-success" href="{{ route('anuncion.edit', $anuncion->id) }}"> Editar </a>
                             <form action="{{ route('anuncion.destroy', $anuncion->id) }}" method="POST"
                                 style="display: inline-block">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-outline-danger">eliminar</button>
+                                <button class="btn btn-outline-danger">Eliminar</button>
                             </form>
                         </div>
                     @endcan

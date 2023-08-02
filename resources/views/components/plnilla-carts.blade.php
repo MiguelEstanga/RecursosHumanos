@@ -12,23 +12,23 @@
               <div class="card-header ">
                 <div class="row g-3">
                     <div class="col-md-4">
-                            Petision Hecha por : {{ $planilla->user->name }} {{ $planilla->user->name }}
+                            Petición Hecha por : {{ $planilla->user->name }} 
                      </div>
                         <div class="col-md-4">
-                            Cedula : {{ $planilla->user->cedula }}
+                            Cédula : {{ $planilla->user->cedula }}
                         </div>
                         <div class="col-md-4">
-                            Estado : {{ $planilla->estado->estado }} {{ $planilla->estado->created_at }}
+                            Estado : {{ $planilla->estado->estado }}  {{ $planilla->created_at }}
                         </div>
                 </div>
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{ $planilla->TipoDeSolisitud->Tipo_Solisitud }}</h5>
                 <div class="card-text">
-                    A Nombre De : {{ $planilla->Nombre_Completo }}{{ $planilla->Apellido_Completo }} 
+                    A Nombre de : {{ $planilla->Nombre_Completo }} {{ $planilla->Apellido_Completo }} 
                 </div>
                 <div>
-                    Cedula: {{ $planilla->Cedula }}
+                    Cédula: {{ $planilla->Cedula }}
                 </div>
                 <div>
                      Cargo: {{ $planilla->Cargo }}
@@ -36,13 +36,13 @@
 
                 @can("admin")
                                     <a "></a> 
-                    <a target="_black" href="{{ route('planilla.show.admin' , $planilla->id) }}" class="btn btn-primary">ver planilla</a>
+                    <a target="_black" href="{{ route('planilla.show.admin' , $planilla->id) }}" class="btn btn-primary">Ver planilla</a>
 
-                    <a target="_black" href="{{ route('planilla.respuesta' , $planilla->id) }}"  class ="btn btn-success">responeder</a>
+                    <a target="_black" href="{{ route('planilla.respuesta' , $planilla->id) }}"  class ="btn btn-success">Responder</a>
 
 
                 @endcan
-                @if($planilla->estado->id == 5)
+                @if($planilla->estado->id == 5  || $planilla->estado->id == 2 )
                     <form action="{{ route('planillabeneficiario.delete' , $planilla->id) }}" method="post" >
                         @csrf
                         @method("delete")

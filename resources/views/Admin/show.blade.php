@@ -122,7 +122,7 @@
 
             </div>
             <div class="leyenda">
-                DIRECCION DE RECURSOS HUMANOS
+                DIRECCIÓN DE RECURSOS HUMANOS
             </div>
         </div>
         <HR>
@@ -144,22 +144,14 @@
                 </div>
                 <div class="par">
                     <div class="titulo">
-                        CEDULA DE IDENTIDAD:
+                        CÉDULA DE IDENTIDAD:
                     </div>
                     <div class="data">
                         {{ $registro->Cedula }}
 
                     </div>
                 </div>
-                <div class="par">
-                    <div class="titulo">
-                        DEPENDENCIA NOMINA :
-                    </div>
-                    <div class="data">
-                        {{ $registro->Dependencia_Nominal }}
-
-                    </div>
-                </div>
+                
                 <div class="doblepar">
                     <div class="doblepar-titulo">
                         CARGO:
@@ -168,7 +160,7 @@
                         {{ $registro->Cargo }}
                     </div>
                     <div class="doblepar-titulo">
-                        CODIGO:
+                        CÓDIGO:
                     </div>
                     <div class="doblepar-data">
                         {{ $registro->Codigo }}
@@ -176,10 +168,19 @@
                 </div>
                 <div class="par">
                     <div class="titulo">
-                        Direccion :
+                        DIRECCIÓN :
                     </div>
                     <div class="data">
                         {{ $registro->Direccion }}
+
+                    </div>
+                </div>
+                <div class="par">
+                    <div class="titulo">
+                        TIPO DE BENEFICIO:
+                    </div>
+                    <div class="data">
+                        {{ $registro->TipoDeSolisitud->Tipo_Solisitud }}
 
                     </div>
                 </div>
@@ -189,22 +190,26 @@
 
 
         </div>
+        @if($registro->carga[0]->Nombre_Apellido =='No aplica' )
+        <h1 style="text-align: center; margin:20px 0; ">Esta planilla no tiene carga familiar</h1>
+
+        @else
+
         <h1 style="text-align: center; margin:20px 0; ">DATOS DE CARGA FAMILIAR</h1>
-
-
+    
         <table class="tablecuston table ">
             <thead>
                 <tr>
-                    <th>Nombre Y Apellido</th>
+                    <th>Nombre y Apellido</th>
                     <th>Fecha de Nacimiento</th>
                     @if($registro->id_tsolisitud == 2)
                         <th>
-                            Fecha De Defuncion
+                            Fecha De Defunción
                         </th>
                     @endif
                         
-                    <th>Cedula Identidad</th>
-                    <th>Grado de estudio</th>
+                    <th>Cédula de Identidad</th>
+                    <th>Nivel de Estudio</th>
                 </tr>
             </thead>
 
@@ -233,9 +238,9 @@
             </tbody>
           {{ $registro->carga }}
         </table>
-
+        @endif
         <div class="firma" style="position:absolute; right:0;">
-            RESIBIDO POR : <div></div>
+            RECIBIDO POR : <div></div>
         </div>
         <div class="firma">
             FECHA : <div></div>

@@ -32,13 +32,14 @@ class PlanillaBenefisiarioController extends Controller
 
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Caracas');
        
         $request->validate(
             [
                 'Nombre_Completo' => 'required',
                 'Apellido_Completo' => 'required',
                 'Cedula_beneficiario' => 'required',
-                'Codigo' => 'required',
+                'telefono' => 'required',
                 'Cargo' => 'required',
                 'Direccion' => 'required',
             ]
@@ -46,35 +47,57 @@ class PlanillaBenefisiarioController extends Controller
         );
 
        $familiares = [];
-       
-       for($i = 0 ; $i< count($request->Fecha_Nacimiento) ;  $i++){
-             $familiares[$i] = array(
-                    'Fecha_Nacimiento' => $request->Fecha_Nacimiento[$i],
-                    'Fecha_De_Defuncion' => $request->solisitud == 2 ? $request->Fecha_De_Defuncion[$i] : 'no tiene' ,
-                    'nombre' => $request->Nombre_Apellido[$i],
-                    'Cedula' => $request->Cedula[$i],
-                    'Edad' => $request->Edad[$i],
-                    'nivel_estudio' => $request->nivel_estudio[$i]
-                   
-            );
-       } 
       
-       
+
+       if($request->solisitud == 1 || $request->solisitud == 2 ){
+         if( gettype($request->Fecha_Nacimiento) == "NULL" ){
+            return redirect('planilla_benefisiario_crear')->with('mensage' , '¡Por favor, llene la carga familiar!');
+         }   
+         
+       }
+
+       if(    gettype($request->Fecha_Nacimiento) == "NULL" )
+       {
+            $familiares[0] = array(
+                'Fecha_Nacimiento' =>"No aplica",
+                'Fecha_De_Defuncion' => 'No aplica',
+                'nombre' => 'No aplica',
+                'Cedula' => 'No aplica',
+                'Edad' => 'No aplica',
+                'nivel_estudio' => 'No aplica'
+
+            );
+       }else{
+            
+            for($i = 0 ; $i< count($request->Fecha_Nacimiento) ;  $i++){
+                    $familiares[$i] = array(
+                            'Fecha_Nacimiento' => $request->Fecha_Nacimiento[$i],
+                            'Fecha_De_Defuncion' => $request->solisitud == 2 ? $request->Fecha_De_Defuncion[$i] : 'no tiene' ,
+                            'nombre' => $request->Nombre_Apellido[$i],
+                            'Cedula' => $request->Cedula[$i],
+                            'Edad' => $request->Edad[$i],
+                            'nivel_estudio' => $request->nivel_estudio[$i]
+                        
+                    );
+            } 
+        }
+     
        $registro = PlanillaBeneficiario::create([
             'Nombre_Completo' => $request->Nombre_Completo,
             'Apellido_Completo' => $request->Apellido_Completo,
             'Cedula' => $request->Cedula_beneficiario,
-            'Codigo' => $request->Codigo,
-            'Cargo' => $request->Cargo,
-            'Direccion' => $request->Direccion,
-            'Dependencia_Nominal' => $request->Dependencia_Nominal,
+            'Codigo' => rand(1, 1000000),  
+            'hora' =>  date(  'h:i:s') ,
+            'Cargo'=> $request->Cargo,
+            'Direccion' => $request->Direccion ,
+            'Dependencia_Nominal' => 'Dependencia Nominal',
             'id_usuario' => Auth::user()->id ,         
             'id_tsolisitud' => $request->solisitud ,
             'id_estado' => 1
         ]);
 
 
-
+        
 
        for ($i = 0; $i < count($familiares) ; $i++) 
        {
@@ -92,7 +115,7 @@ class PlanillaBenefisiarioController extends Controller
             )->save();
        }
 
-        return redirect()->route('desboart')->with("mensage" , 'Su planilla se revisada por el analista ');
+        return redirect()->route('desboart')->with("mensage" , 'Su planilla se creó y ha sido enviada para su revisión con el analista. ');
 
     }
 
@@ -125,7 +148,7 @@ class PlanillaBenefisiarioController extends Controller
     public function destroy($id)
     {
        $registro =  PlanillaBeneficiario::find($id)->delete();
-       return redirect()->route('desboart')->with('mensage' , 'se ha eliminado un registro');   
+       return redirect()->route('desboart')->with('mensage' , 'Se ha eliminado el registro de la planilla satisfactoriamente');   
     }
 
 

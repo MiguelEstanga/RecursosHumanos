@@ -2,10 +2,8 @@
 
 @section('contenido')
 	<div class=" contenido">
-		@if(session('mensage'))
-			<div class="alert alert-success">{{ session("mensage") }}</div>
-		@endif
-		@foreach(Auth::user()->planillas as $planilla)
+	
+		@foreach($misplanillas as $planilla)
 			<x-plnilla-carts  :planilla="$planilla" />
 		@endforeach
 	</div>	

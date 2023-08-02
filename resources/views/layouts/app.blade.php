@@ -11,7 +11,8 @@
     <style>
         body{
           
-           
+            background-image: linear-gradient( 60deg , #212529  , #5DADE2 , #28B463 80%)  ;
+            
         }
         *{
             margin: 0;

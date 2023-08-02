@@ -37,7 +37,7 @@ Route::group( ['middleware' => 'auth' , 'middleware' => 'can:public']  , functio
 
     Route::resource('inicio' , AnuncioController::class )->names('anuncion');
 
-});
+}); 
 
 Route::group(['middleware' => 'auth' , 'middleware' => 'can:admin'], function ()
 {

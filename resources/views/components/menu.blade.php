@@ -44,11 +44,11 @@
   <div class="avatar" id="avatar">
       @can('admin')
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 512 512"><path fill="white" d="M213.3 384c0-87 65.2-158.7 149.3-169.2v-1.5c5.5-8 21.3-21.3 21.3-42.7s-21.3-42.7-21.3-53.3C362.7 32 319.2 0 256 0c-60.5 0-106.7 32-106.7 117.3c0 10.7-21.3 32-21.3 53.3s15.2 35.4 21.3 42.7c0 0 0 21.3 10.7 53.3c0 10.7 21.3 21.3 32 32c0 10.7 0 21.3-10.7 42.7L64 362.7C21.3 373.3 0 448 0 512h271.4c-35.5-31.3-58.1-77-58.1-128zM384 256c-70.7 0-128 57.3-128 128s57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128zm85.3 149.3h-64v64h-42.7v-64h-64v-42.7h64v-64h42.7v64h64v42.7z"/></svg>
-
       @endcan
       @can('public')
+         @if(Auth::user()->roles{0}->name == "Usuario"  ) 
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 256 256"><path fill="white" d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8ZM72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"/></svg>
-
+        @endif
       @endcan
   </div>
   <div class="avatarmenu" id="avatarmenu">
@@ -57,7 +57,7 @@
     </div>
     <div class=" bg-dark datos_session">
         <h4>
-          Recursos Humanos Contraloría De Monagas
+          Recursos Humanos - Contraloría De Monagas
         </h4>
         <p>
           Correo: {{ Auth::user()->email }} <br>
@@ -79,17 +79,17 @@
         @can('admin')
           <div class="p-2 item">
             <a class="fs-4 text-dark" href="{{ route('planillas.all') }}">
-              Todas las Planillas
+              Planillas Recibidas
             </a>
           </div>
            <div class="p-2 item">
             <a class="fs-4 text-dark" href="{{ route('solisitudes.index') }}">
-              Solicitudes
+              Añadir Nuevo Tipo de Planilla
             </a>
           </div>
            <div class="p-2 item">
             <a class="fs-4 text-dark" href="{{ route('anuncion.create') }}">
-              Crear Un Anuncio
+              Crear un Anuncio
             </a>
           </div>
         @endcan
@@ -102,7 +102,7 @@
                   background-color: transparent;
                 "
                  class="fs-4 text-dark" >
-                   Cerrar Sesion
+                   Cerrar Sesión
               </button>
             </form>
           
@@ -191,7 +191,9 @@
     font-family: Arial;
     font-weight: 400;
   }
-
+  .item{
+    border-bottom:solid 1px black;
+  }
   .item:hover   {
     background-color: #212529;
     

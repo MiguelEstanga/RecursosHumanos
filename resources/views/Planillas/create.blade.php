@@ -1,53 +1,66 @@
 @extends('layouts.app')
-
+    
 @section('contenido')
+
 	<div class="container-sm">
+	
 		<form class="row g-3 formulario bg-dark text-white" action="{{ route('planillabeneficiario.store') }}" method="post">
 			@csrf
 			<div class="col-md-12">
 				<select required name="solisitud" id="solisitud" class="form-select" 'solisitud' aria-label="Default select example">
 								<option value="null" selected>
-									Seleciones una opcion
+									Seleccione una opción
 								</option>
 						@foreach($solisitudes as $solisitud)  
 		  						<option value="{{ $solisitud->id }}">{{ $solisitud->Tipo_Solisitud }}</option>
 						@endforeach
 				</select>
 				@error("solisitud")
-					<p style="color:red" > campo obligatorio </p>
+					<p style="color:red" > Campo obligatorio </p>
 				@enderror
 			</div>
 
 			<div class="col-md-6">
 				<label for="nombre-completo"  class="form-label">
-					Nombre Completo
+					Nombres
 				</label>
-				<input required type="text" placeholder="nombre-completo" name="Nombre_Completo" class="form-control">
+				<input required type="text" placeholder="Nombres" name="Nombre_Completo" class="form-control">
 				<div class="validated">
 					@error("Nombre_Completo")
+						<p style="color:red" >Campo obligatorio </p>
+					@enderror
+				</div>
+			</div>
+			<div class="col-md-6">
+				<label for="nombre-completo"  class="form-label">
+					Apellidos
+				</label>
+				<input type="text" required placeholder="Apellidos" name="Apellido_Completo" class="form-control">
+				<div class="validated">
+					@error("Apellido_Completo")
+						<p style="color:red" > Campo obligatorio </p>
+					@enderror
+				</div>
+			</div>
+			<div class="col-md-6">
+				<label  class="form-label">
+					Cédula de Identidad
+				</label>
+				<input placeholder="C.I." type="text" class="form-control" name="Cedula_beneficiario" >
+				<div class="validated">
+					@error("Cedula")
 						<p style="color:red" >campo obligatorio </p>
 					@enderror
 				</div>
 			</div>
 			<div class="col-md-6">
 				<label for="nombre-completo"  class="form-label">
-					Apellido Completo
+					Número de Teléfono
 				</label>
-				<input type="text" required placeholder="Apellido" name="Apellido_Completo" class="form-control">
-				<div class="validated">
-					@error("Apellido_Completo")
-						<p style="color:red" > campo obligatorio </p>
-					@enderror
-				</div>
-			</div>
-			<div class="col-md-6">
-				<label for="nombre-completo"  class="form-label">
-					Codigo
-				</label>
-				<input type="text" required placeholder="Codigo" name="Codigo" class="form-control">
+				<input type="text" required placeholder="Número de Teléfono" name="telefono" class="form-control">
 				<div class="validated">
 					@error("Codigo")
-						<p style="color:red" > campo obligatorio </p>
+						<p style="color:red" > Campo obligatorio </p>
 					@enderror
 				</div>
 			</div>
@@ -62,33 +75,23 @@
 					@enderror
 				</div>
 			</div>
-			<div class="col-md-6">
-				<label for="nominal">
+			<!---div class="col-md-6">
+				<label for="nominal"  class="form-label">
 					Dependencia Nominal
 				</label>
-				<input type="text" class="form-control" name="Dependencia_Nominal" >
+				<input type="text" required placeholder= "Dependencia Nominal" class="form-control" name="Dependencia_Nominal" >
 				<div class="validated">
 					@error("Dependencia_Nominal")
 						<p style="color:red" >campo obligatorio </p>
 					@enderror
 				</div>
-			</div>
-			<div class="col-md-6">
-				<label for="nominal">
-					Cedula
-				</label>
-				<input type="text" class="form-control" name="Cedula_beneficiario" >
-				<div class="validated">
-					@error("Cedula")
-						<p style="color:red" >campo obligatorio </p>
-					@enderror
-				</div>
-			</div>
+			</div -->
+		
 			<div class="col-md-12">
 				<label for="Direccion">
-					Direccion
+					Dirección
 				</label>
-				<textarea required name="Direccion" class="form-control" cols="30" rows="10" placeholder="Direccion numero telefonico"></textarea>
+				<textarea required name="Direccion" class="form-control" cols="30" rows="10" placeholder="Dirección"></textarea>
 				<div class="validate">
 					@error("Direccion")
 						<p style="color:red" > campo obligatorio </p>
@@ -103,10 +106,10 @@
 				 	<thead id="headtable" >
 						 <tr>
 							<th scope="col">Fecha Nacimiento</th>
-							<th scope="col">Fecha De Defuncion</th>
+							<th scope="col">Fecha De Defunción</th>
 							<th scope="col">Nombre y Apellido</th>
-							<th scope="col">nombre</th>
-							<th scope="col">Cedula</th>
+						
+							<th scope="col">Cédula</th>
 							<th scope="col">Edad</th>
 							<th scope="col">Nivel De Estudio</th>
 						<tr/>
@@ -135,13 +138,19 @@
 		      <td><input  type="date"  name="Fecha_Nacimiento[]" class="form-control" ></td>
 		      <td><input  type="date"  name="Fecha_De_Defuncion[]" class="form-control" ></td>
 		      <td><input  type="text"  name="Nombre_Apellido[]" class="form-control" ></td>
-		      <td><input type="text" class="form-control"  name="nombre[]"></td>
+		     
 		      <td><input  type="text"  class="form-control" name="Cedula[]">	</td>
 		      <td><input  type="text"  class="form-control" name="Edad[]"></td>
 		      <td>
 		      	<select  name="nivel_estudio[]" class="form-select" >
-							<option value="Basico">
-								basico
+				  			<option value="No aplica">
+								No aplica
+							</option>
+							<option value="Básico">
+								Básico
+							</option>
+							<option value="Intermedio">
+								Intermedio
 							</option>
 							<option value="Superior">
 								Superior
@@ -162,8 +171,14 @@
 		      <td><input required  type="text"  class="form-control" name="Edad[]"></td>
 		      <td>
 		      	<select required  name="nivel_estudio[]" class="form-select" >
+				  			<option value="No aplica">
+								No aplica
+							</option>
 							<option value="Basico">
-								basico
+								Básico
+							</option>
+							<option value="Intermedio">
+								Intermedio
 							</option>
 							<option value="Superior">
 								Superior
@@ -177,10 +192,10 @@
 	<template id="thead1" >
 		<tr>
 			<th scope="col">Fecha Nacimiento</th>
-			<th scope="col">Fecha De Defuncion</th>
+			<th scope="col">Fecha De Defunción</th>
 			<th scope="col">Nombre y Apellido</th>
-			<th scope="col">nombre</th>
-			<th scope="col">Cedula</th>
+		
+			<th scope="col">Cédula</th>
 			<th scope="col">Edad</th>
 			<th scope="col">Nivel De Estudio</th>
 		<tr/>
@@ -190,7 +205,7 @@
 			<th scope="col">Fecha Nacimiento</th>			
 			<th scope="col">Nombre y Apellido</th>
 			
-			<th scope="col">Cedula</th>
+			<th scope="col">Cédula</th>
 			<th scope="col">Edad</th>
 			<th scope="col">Nivel De Estudio</th>
 		<tr/>

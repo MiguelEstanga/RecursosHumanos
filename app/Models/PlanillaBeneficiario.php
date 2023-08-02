@@ -18,7 +18,7 @@ class PlanillaBeneficiario extends Model
         'Cedula',
         'Apellido_Completo' ,
         'Dependencia_Nominal',
-       
+       'hora',
         'id_estado',
         'id_usuario',
         'id_tsolisitud'
@@ -26,7 +26,7 @@ class PlanillaBeneficiario extends Model
 
  
 
-    public function TipoDeSolisitud()
+    public function TipoDeSolisitud() 
     {
         return $this->belongsTo(TipoDesolisitudes::class , 'id_tsolisitud');
     }

@@ -6,7 +6,7 @@
 
     <div class=" contenedor">
         <h2 class="alert ">
-            Quieres Dejar un anuncion
+            Información para crear anuncio
         </h2>
         @if (session('mensage'))
             <h2 class="alert alert-success">{{ session('mensage') }}</h2>
@@ -16,14 +16,14 @@
             <form action="{{ route('anuncion.create') }}" method="post">
                 @csrf
                 <div class="mb-3">
-                    <label for="titulo" class="form-label"> Titulo </label>
+                    <label for="titulo" class="form-label"> Título </label>
                     <input type="text" class="form-control" id="titulo" name="titulo">
                     @error('titulo')
                         <p style="color: red">minimo 5 letras</p>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">anuncion</label>
+                    <label for="exampleFormControlTextarea1" class="form-label">Anuncio</label>
                     <textarea name="anuncion" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     @error('anuncion')
                         <p style="color: red">minimo 5 letras</p>

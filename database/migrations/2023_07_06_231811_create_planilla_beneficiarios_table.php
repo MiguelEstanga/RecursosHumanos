@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('Cedula');
             $table->string('Codigo');
             $table->string('Cargo');
+            $table->string('hora');
             $table->string('Direccion');
             $table->string('fecha')->default( date('Y-m-d') );
             $table->string('mensage')->default('Esperando respuesta del Administrador');

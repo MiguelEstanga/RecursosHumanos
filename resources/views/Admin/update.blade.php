@@ -12,7 +12,7 @@
 			      <th scope="col">Nombre</th>
 			      <th scope="col">Apellido</th>
 			      <th scope="col">Email</th>
-			      <th scope="col">Cedula</th>
+			      <th scope="col">Cédula</th>
 			      <th scope="col" >Cargo</th>
 			    </tr>
 			  </thead>
@@ -47,7 +47,7 @@
 			 	</td>
 			 	<td>
 			 		<button class="btn btn-success">
-			 			Actulizar
+			 			Actualizar
 			 		</button>
 			 	</td>
 			 

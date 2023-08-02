@@ -4,8 +4,9 @@
 
 <div class="container-sm contenedor">
 
-	<form action="{{ route('solisitudes.store') }}"  method="post">
+	<form action="{{ route('solisitudes.update' , $solisitud->id) }}"   method="post">
 		@csrf
+        @method("put")
 		<div class="row g-3 bg-dark text-white container " >
 			<div class="col-md-12" >
 				<label
@@ -14,7 +15,7 @@
 				for="nombre_solisitud">Nombre De La Solicitud</label>
 			</div>
 			<div class="col-md-12">
-				<input required type="text" class="form-control" name='Tipo_Solisitud'>
+				<input required type="text" value="{{$solisitud->Tipo_Solisitud}}"  class="form-control" name='Tipo_Solisitud'>
 				@error('Tipo_Solisitud')
 					 {{  $mensage }}
 					 error
@@ -22,27 +23,12 @@
 			</div>
 			<div class="col-md-12">
 				<button class="btn btn-success text-white boton"  >
-					Crear Solicitud
+				    Editar Solicitud
 				</button>
 				
 			</div>
 		</div>
 	</form>	
-	<div class="list">
-		
-		
-		<ul class="list-group  bg-dark  text-white list_">
-			<li class="list-group-item text-center list-group-item-dark fs-4"> 
-				Solicitudes Creadas 
-			</li>
-			@foreach($solisitudes as $solisitud)
-				<li  class="list-group-item list-group-item-dark">{{ $solisitud->Tipo_Solisitud }}  
-					<a href="{{ route('solisitudes.edit' , $solisitud->id)  }}">editar</a> 
-				</li>
-			@endforeach
-				
-		</ul>
-</div>
 
 <style>
 	.contenedor{

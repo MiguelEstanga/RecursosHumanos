@@ -29,7 +29,7 @@ class TipoDeSolisitudController extends Controller
      */
     public function create()
     {
-        return view('solisitudes.create');
+        return view('solisitudes.create' , [ 'solisitudes' => TipoDesolisitudes::all() ]);
     }
 
     /**
@@ -40,13 +40,12 @@ class TipoDeSolisitudController extends Controller
      */
     public function store(Request $request)
     {   
-       
-        
+      
         TipoDesolisitudes::create([
             'Tipo_Solisitud' => $request->Tipo_Solisitud
         ]);
 
-        return redirect()->route('solisitudes.index')->with('mensage' , 'Se Ha Creado Una Nueva Solicitud Exitosamente');
+        return redirect()->route('solisitudes.index')->with('mensage' , 'La nueva solicitud ha sido creada exitosamente');
     }
 
     /**
@@ -57,7 +56,8 @@ class TipoDeSolisitudController extends Controller
      */
     public function show($id)
     {
-        //
+        $solisitu = TipoDesolisitudes::find($id);
+        return view('solisitud.edit' , ['solisitud' => $solisitu]);
     }
 
     /**
@@ -68,7 +68,8 @@ class TipoDeSolisitudController extends Controller
      */
     public function edit($id)
     {
-        //
+        $solisitu = TipoDesolisitudes::find($id);
+        return view('solisitudes.edit' , ['solisitud' => $solisitu]);
     }
 
     /**
@@ -80,7 +81,10 @@ class TipoDeSolisitudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $editar =   TipoDesolisitudes::find($id);
+        $editar->Tipo_Solisitud = $request->Tipo_Solisitud;
+        $editar->save();
+        return redirect()->route('solisitudes.index');
     }
 
     /**
